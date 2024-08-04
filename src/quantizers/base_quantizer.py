@@ -1,9 +1,9 @@
 # src/quantizers/base_quantizer.py
 
 class BaseQuantizer:
-    def __init__(self, model, bit_width, out_path, model_name):
+    def __init__(self, model, bits, out_path, model_name):
         self.model = model
-        self.bit_width = bit_width
+        self.bits = bits
         self.out_path = out_path
         self.model_name = model_name
 
