@@ -54,7 +54,7 @@ autoquant --model <MODEL_NAME> --method <METHOD> --bits <NUM_BITS> --output <OUT
 Here’s a quick example of how to quantize the GPT-2 model to 8 bits using the GGUF method:
 
 ```bash
-python -m src.main --model openai-community/gpt2 --method gguf --bits 8 --output ./quantized_model --verbose
+autoquant --model openai-community/gpt2 --method gguf --bits 8 --output ./quantized_model --verbose
 ```
 
 ### 🛠️ Supported Methods and Types
