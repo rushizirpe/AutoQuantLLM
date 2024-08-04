@@ -8,16 +8,14 @@ from pathlib import Path
 class GGUFQuantizer(BaseQuantizer):
     
     def _get_quantization_type(self):
-        if self.bits == 4:
-            return "q4_0"
-        elif self.bits == 8:
+        if self.bits == 8:
             return "q8_0"
         elif self.bits == 16:
             return "f16"
         elif self.bits == 32:
             return "f32"
         else:
-            raise ValueError(f"Unsupported bit size: {self.bits}. Supported sizes are 4, 8, 16, and 32.")
+            raise ValueError(f"Unsupported bit size: {self.bits}. Supported sizes are 8, 16, and 32.")
 
     def quantize(self):
         quantization_type = self._get_quantization_type()
