@@ -9,7 +9,8 @@ setup(
         "transformers",
         "torch",
         "gitpython",
-        "python-dotenv"
+        "python-dotenv",
+        "autoawq"
     ],
     entry_points={
         "console_scripts": [
