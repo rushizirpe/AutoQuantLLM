@@ -61,8 +61,8 @@ autoquant --model openai-community/gpt2 --method gguf --bits 8 --output ./quanti
 
 This auto quantizer supports various quantization methods and types, including:
 
-- **GGUF**: GPT-Generated Unified Format quantization.
-- **AWQ**: To Be Added
+- **GGUF**: GPT-Generated Unified Format Quantization.
+- **AWQ**: AWQ: Activation-aware Weight Quantization
 - **Static**: To Be Added
 - **Dynamic**: To Be Added
 - **Weight Only**: To Be Added
