@@ -45,8 +45,8 @@ autoquant --model <MODEL_NAME> --method <METHOD> --bits <NUM_BITS> --output <OUT
 ```
 
 - `<MODEL_NAME>` - Hugging Face model identifier (e.g., `openai-community/gpt2`).
-- `<METHOD>` - quantization method you wish to use (e.g., `gguf`).
-- `<NUM_BITS>` - bit width (8, 16, or 32).
+- `<METHOD>` - quantization method you wish to use (e.g., `gguf`, `awq`).
+- `<NUM_BITS>` - bit width (4, 8, 16, or 32).
 - `<OUTPUT_DIR>` - directory where you want to save the quantized model.
 
 #### 📘 Example
