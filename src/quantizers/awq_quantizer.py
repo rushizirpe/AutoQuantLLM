@@ -3,29 +3,34 @@
 from .base_quantizer import BaseQuantizer
 from awq import AutoAWQForCausalLM
 from transformers import AutoTokenizer
-import torch
 import os
 
 class AWQQuantizer(BaseQuantizer):
-    def __init__(self, model, bit_width, out_path, model_name, quant_config=None):
-        super().__init__(model, bit_width, out_path, model_name)
-        self.quant_config = quant_config or {}
+    def __init__(self, model_name, bit_width, group_size, version, zero_point, out_path):
+        super().__init__(model_name, bit_width, out_path)
+        self.group_size = group_size
+        self.version = version
+        self.zero_point = zero_point
 
     def quantize(self):
+        # Define the quantization configuration
+        quant_config = {
+            "w_bit": self.bits,
+            "q_group_size": self.group_size,
+            "version": self.version,
+            "zero_point": self.zero_point
+        }
+        
         # Load the model and tokenizer
-        tokenizer = AutoTokenizer.from_pretrained(self.model)
-        model = AutoAWQForCausalLM.from_pretrained(self.model, **self.quant_config)
+        tokenizer = AutoTokenizer.from_pretrained(self.model_name, trust_remote_code=True)
+        model = AutoAWQForCausalLM.from_pretrained(self.model_name, safetensors=True, low_cpu_mem_usage=True)
+        
+        # Quantize the model
+        model.quantize(tokenizer, quant_config=quant_config)
+        
+        # Save the quantized model and tokenizer
+        save_folder = os.path.join(self.out_path, f"{self.model_name}-AWQ")
+        model.save_quantized(save_folder)
+        tokenizer.save_pretrained(save_folder)
 
-        # Prepare for quantization
-        model.quantize(
-            tokenizer,
-            quant_bit=self.bit_width,
-            **self.quant_config
-        )
-
-        # Save the quantized model
-        out_path = os.path.join(self.out_path, f"{self.model_name}_awq_{self.bit_width}bit")
-        model.save_quantized(out_path)
-        tokenizer.save_pretrained(out_path)
-
-        return out_path
+        return save_folder
