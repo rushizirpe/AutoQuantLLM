@@ -54,7 +54,12 @@ autoquant --model <MODEL_NAME> --method <METHOD> --bits <NUM_BITS> --output <OUT
 Here’s a quick example of how to quantize the GPT-2 model to 8 bits using the GGUF method:
 
 ```bash
-autoquant --model openai-community/gpt2 --method gguf --bits 8 --output ./quantized_model --verbose
+autoquant --model openai-community/gpt2 --method gguf --bits 8 --output ./GGUF --verbose
+```
+or Qwen2-0.5B using AWQ method:
+
+```bash
+autoquant --model Qwen/Qwen2-0.5B --method awq  --bits 8 --output "awq_test" --group_size 128 --version "GEMM" --zero_point
 ```
 
 ### 🛠️ Supported Methods and Types
@@ -62,7 +67,7 @@ autoquant --model openai-community/gpt2 --method gguf --bits 8 --output ./quanti
 This auto quantizer supports various quantization methods and types, including:
 
 - **GGUF**: GPT-Generated Unified Format Quantization.
-- **AWQ**: AWQ: Activation-aware Weight Quantization
+- **AWQ**: Activation-aware Weight Quantization
 - **Static**: To Be Added
 - **Dynamic**: To Be Added
 - **Weight Only**: To Be Added
