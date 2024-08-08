@@ -37,7 +37,7 @@ class GGUFQuantizer(BaseQuantizer):
             "convert_hf_to_gguf.py",
             "--outfile", str(outfile),
             "--outtype", quantization_type,
-            self.model
+            self.model_name
         ]
 
         # Run the conversion and restore the original sys.argv
