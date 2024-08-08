@@ -9,14 +9,24 @@ def process_command(args):
     model_path = load_model(args.model)
     
     if args.method == "gguf":
-        quantizer = GGUFQuantizer(model_path, args.bits, args.output, args.model.split("/")[-1])
+        quantizer = GGUFQuantizer(
+            model_path, 
+            args.bits, 
+            args.output, 
+            args.model.split("/")[-1])
+        
     elif args.method == "awq":
-        quant_config = {
-            "device_map": "auto",
-            "trust_remote_code": True,
-            "force_download": True,
-        }
-        quantizer = AWQQuantizer(model_path, args.bits, args.output, args.model.split("/")[-1], quant_config)
+        quantizer = AWQQuantizer(
+            model_name=args.model,
+            bit_width=args.bits,
+            group_size=args.group_size,
+            version=args.version,
+            zero_point=args.zero_point,
+            out_path=args.output
+        )
+    else:
+        raise ValueError("Unknown quantization method.")
+
     
     # Quantizer to be added
     
