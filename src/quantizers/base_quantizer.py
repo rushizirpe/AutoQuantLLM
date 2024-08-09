@@ -1,7 +1,7 @@
 # src/quantizers/base_quantizer.py
 
 class BaseQuantizer:
-    def __init__(self, model_name, bits, out_path, group_size=None, version=None, zero_point=None):
+    def __init__(self, model_name, bits, out_path, group_size=None, version=None, zero_point=None, device="cpu"):
         """
         Initialize the BaseQuantizer with common parameters.
 
@@ -18,6 +18,7 @@ class BaseQuantizer:
         self.group_size = group_size
         self.version = version
         self.zero_point = zero_point
+        self.device = device
 
     def quantize(self):
         raise NotImplementedError("Quantize method must be implemented by subclasses.")
