@@ -10,7 +10,8 @@ setup(
         "torch",
         "gitpython",
         "python-dotenv",
-        "autoawq"
+        "autoawq",
+        "sentencepiece"
     ],
     entry_points={
         "console_scripts": [
