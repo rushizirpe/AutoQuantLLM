@@ -59,7 +59,7 @@ autoquant --model openai-community/gpt2 --method gguf --bits 8 --output ./GGUF -
 or Qwen2-0.5B using AWQ method:
 
 ```bash
-autoquant --model Qwen/Qwen2-0.5B --method awq  --bits 8 --output "awq_test" --group_size 128 --version "GEMM" --zero_point
+autoquant --model Qwen/Qwen2-0.5B --method awq  --bits 4 --output "awq_test" --group_size 128 --version "GEMM" --zero_point
 ```
 
 ### 🛠️ Supported Methods and Types
