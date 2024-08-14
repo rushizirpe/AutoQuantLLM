@@ -30,12 +30,6 @@ dbus-python==1.2.18
 dill==0.3.8
 distro==1.7.0
 distro-info==1.1+ubuntu0.1
-Django==5.0.7
-django-celery-results==2.5.1
-django-cors-headers==4.4.0
-django-filter==24.2
-django-storages==1.14.4
-djangorestframework==3.15.2
 dnspython==2.6.1
 drf-yasg==1.21.7
 ephem==4.1.3
